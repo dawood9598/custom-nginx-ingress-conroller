@@ -7,8 +7,8 @@ The custom Nginx Ingress Controller is configured to filter and process only Ing
 # Getting Started
 
 ## Prerequisites
-Kubernetes cluster
-Helm
+1. Kubernetes cluster
+2. Helm
 
 # Configuration Details:
 
@@ -22,8 +22,10 @@ This configuration ensures that the Nginx Ingress Controller processes only thos
 1. Clone the repository:
 `git clone https://github.com/dawood9598/custom-nginx-ingress-conroller.git`
 2. Install the Helm chart:
-`cd custom-nginx-ingress-conroller`
-`helm install custom-nginx-ingress ./nginx-ingress-controller`
+```
+cd custom-nginx-ingress-conroller
+helm install custom-nginx-ingress ./nginx-ingress-controller
+```
 
 ## Using the Custom Ingress Annotation
 To use the custom Nginx Ingress Controller with your application, annotate your Ingress resources with the custom annotation nginx-trial: "true". You can find the configuration in **sample-app/ingress.yaml**
