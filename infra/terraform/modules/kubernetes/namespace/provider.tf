@@ -11,7 +11,6 @@ terraform {
   }
 }
 
-# Kubernetes provider configuration
 provider "kubernetes" {
   config_path = var.kubeconfig
 }
