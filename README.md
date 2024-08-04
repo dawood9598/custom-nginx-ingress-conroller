@@ -1,32 +1,52 @@
-This repository contains a customized Nginx Ingress Controller Helm chart and example usage demonstrating how to configure the controller to process Ingress resources with a custom annotation.
 
 # Overview
-
-The custom Nginx Ingress Controller is configured to filter and process only Ingress resources that have a specific annotation. This allows for targeted management of Ingress resources within your Kubernetes cluster.
+The primary goal of this repository is to streamline the deployment of a Nginx Ingress Controller across different environments (such as dev, prod, and stg) using Terragrunt and helm. 
 
 # Getting Started
 
 ## Prerequisites
 1. Kubernetes cluster
 2. Helm
+3. Terragrunt
 
 # Configuration Details:
 
-## Helm Chart
-The custom Nginx Ingress Controller Helm chart includes configurations to filter Ingress resources based on a custom annotation. You can find the configuration in **nginx-ingress-controller/values.yaml.**
+## Terragrunt and Directory Structure
+The repository leverages Terragrunt for managing infrastructure across multiple environments, ensuring consistent deployment processes. The primary structure includes separate directories for each environment (e.g., dev, prod, stg) and reusable modules for common resources like namespaces and the Nginx Ingress Controller.
 
-This configuration ensures that the Nginx Ingress Controller processes only those Ingress resources that are annotated with nginx-trial.
-
-## Deploy the Custom Nginx Ingress Controller
-
-1. Clone the repository:
-`git clone https://github.com/dawood9598/custom-nginx-ingress-conroller.git`
-2. Install the Helm chart:
 ```
-cd custom-nginx-ingress-conroller
-helm install custom-nginx-ingress ./nginx-ingress-controller
+infra/
+└── terraform/
+    └── kubernetes/
+        ├── dev/
+        │   ├── namespace/
+        │       └── terragrunt.hcl
+        │   └── nginx-ingress-controller/
+        │       └── terragrunt.hcl
+        ├── prod/
+        │   ├── namespace/
+        │       └── terragrunt.hcl
+        │   └── nginx-ingress-controller/
+        │       └── terragrunt.hcl
+        └── stg/
+        │   ├── namespace/
+        │       └── terragrunt.hcl
+        │   └── nginx-ingress-controller/
+        │       └── terragrunt.hcl
+modules/
+└── kubernetes/
+    ├── namespace/ 
+    │       └── main.tf 
+    │       └── provider.tf 
+    │       └── vars.tf
+    └── nginx-ingress-controller/
+    │       └── main.tf 
+    │       └── provider.tf 
+    │       └── vars.tf
 ```
+
+## Terragrunt Configuration
+Each environment directory (e.g., dev, prod, stg) contains a terragrunt.hcl file, specifying the source of the modules and environment-specific variables. This setup allows for modular and reusable infrastructure components, with environment-specific customizations handled through Terragrunt.
 
 ## Using the Custom Ingress Annotation
-To use the custom Nginx Ingress Controller with your application, annotate your Ingress resources with the custom annotation nginx-trial: "true". You can find the configuration in **sample-app/ingress.yaml**
-
+The Nginx Ingress Controller can be configured to filter and process only Ingress resources that have a specific annotation.
