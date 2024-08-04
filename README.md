@@ -1,6 +1,6 @@
 
 # Overview
-The primary goal of this repository is to streamline the deployment of a Nginx Ingress Controller across different environments (such as dev, prod, and stg) using Terragrunt and helm. 
+The primary goal of this project is to streamline the deployment of a Nginx Ingress Controller across different environments (such as dev, prod, and stg) using Terragrunt, Terraform and helm. 
 
 # Getting Started
 
